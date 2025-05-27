@@ -1,0 +1,16 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // todos 컬렉션에 대한 규칙
+    match /todos/{todoId} {
+      // 개발 단계에서는 모든 읽기/쓰기 허용
+      // 프로덕션에서는 사용자 인증 기반으로 변경 필요
+      allow read, write: if true;
+    }
+    
+    // 테스트용 컬렉션 (연결 테스트용)
+    match /test/{testId} {
+      allow read, write: if true;
+    }
+  }
+} 
